@@ -1,0 +1,235 @@
+{
+  "captured_at": "2026-10-28T06:03:18.967898+00:00",
+  "sqlite_tests": 37,
+  "postgresql_tests": 37,
+  "exact_events_replayed_through_kafka": 674,
+  "docker": {
+    "Client": {
+      "Version": "29.9.2",
+      "ApiVersion": "1.56",
+      "DefaultAPIVersion": "1.56",
+      "GitCommit": "a82e528",
+      "GoVersion": "go1.26.10",
+      "Os": "darwin",
+      "Arch": "arm64",
+      "BuildTime": "Tue Oct 20 18:43:59 2026",
+      "Context": "desktop-linux"
+    },
+    "Server": {
+      "Platform": {
+        "Name": "Docker Desktop 4.97.0 (244584)"
+      },
+      "Version": "29.9.2",
+      "ApiVersion": "1.56",
+      "MinAPIVersion": "1.40",
+      "Os": "linux",
+      "Arch": "arm64",
+      "Components": [
+        {
+          "Name": "Engine",
+          "Version": "29.9.2",
+          "Details": {
+            "ApiVersion": "1.56",
+            "Arch": "arm64",
+            "BuildTime": "Tue Oct 20 18:44:14 2026",
+            "Experimental": "false",
+            "GitCommit": "0367cbe",
+            "GoVersion": "go1.26.10",
+            "KernelVersion": "7.0.14-linuxkit",
+            "MinAPIVersion": "1.40",
+            "Module": "github.com/moby/moby/v2",
+            "ModuleVersion": "v2.0.0+unknown",
+            "Os": "linux"
+          }
+        },
+        {
+          "Name": "containerd",
+          "Version": "v2.4.2",
+          "Details": {
+            "GitCommit": "b7a25261e029d68978bbf290df0a62fc819b3c51"
+          }
+        },
+        {
+          "Name": "runc",
+          "Version": "1.5.2",
+          "Details": {
+            "GitCommit": "v1.5.2-0-g29dd3dc2"
+          }
+        },
+        {
+          "Name": "docker-init",
+          "Version": "0.19.0",
+          "Details": {
+            "GitCommit": "de40ad0"
+          }
+        }
+      ],
+      "GitCommit": "0367cbe",
+      "GoVersion": "go1.26.10",
+      "KernelVersion": "7.0.14-linuxkit",
+      "BuildTime": "2026-10-20T18:44:14.000000000+00:00"
+    }
+  },
+  "services": [
+    {
+      "Health": "",
+      "Image": "signalflow-airflow",
+      "Name": "signalflow-airflow-1",
+      "Ports": "127.0.0.1:8080->8080/tcp",
+      "Service": "airflow",
+      "State": "running",
+      "Status": "Up 2 minutes"
+    },
+    {
+      "Health": "healthy",
+      "Image": "signalflow-app:local",
+      "Name": "signalflow-api-1",
+      "Ports": "127.0.0.1:8001->8000/tcp",
+      "Service": "api",
+      "State": "running",
+      "Status": "Up 2 minutes (healthy)"
+    },
+    {
+      "Health": "",
+      "Image": "signalflow-app:local",
+      "Name": "signalflow-consumer-1",
+      "Ports": "8000/tcp",
+      "Service": "consumer",
+      "State": "running",
+      "Status": "Up 2 minutes"
+    },
+    {
+      "Health": "healthy",
+      "Image": "apache/kafka:3.9.1",
+      "Name": "signalflow-kafka-1",
+      "Ports": "9092/tcp",
+      "Service": "kafka",
+      "State": "running",
+      "Status": "Up 3 minutes (healthy)"
+    },
+    {
+      "Health": "healthy",
+      "Image": "postgres:16-alpine",
+      "Name": "signalflow-postgres-1",
+      "Ports": "5432/tcp",
+      "Service": "postgres",
+      "State": "running",
+      "Status": "Up 4 minutes (healthy)"
+    },
+    {
+      "Health": "",
+      "Image": "signalflow-app:local",
+      "Name": "signalflow-producer-1",
+      "Ports": "8000/tcp",
+      "Service": "producer",
+      "State": "running",
+      "Status": "Up 2 minutes"
+    }
+  ],
+  "consumer_offsets": "GROUP                      TOPIC              PARTITION  CURRENT-OFFSET  LOG-END-OFFSET  LAG             CONSUMER-ID                                             HOST            CLIENT-ID\nsignalflow-materializer-v1 signalflow.grid.v1 0          553             553             0               kafka-python-2.3.3-471424e2-facb-4cbd-bacd-bbc3b539844e /172.18.0.6     kafka-python-2.3.3\nsignalflow-materializer-v1 signalflow.grid.v1 1          580             580             0               kafka-python-2.3.3-471424e2-facb-4cbd-bacd-bbc3b539844e /172.18.0.6     kafka-python-2.3.3\nsignalflow-materializer-v1 signalflow.grid.v1 2          619             619             0               kafka-python-2.3.3-471424e2-facb-4cbd-bacd-bbc3b539844e /172.18.0.6     kafka-python-2.3.3",
+  "postgresql": {
+    "raw_events": 674,
+    "observations": 337,
+    "fuel_rows": 3033,
+    "daily_mart_rows": 8
+  },
+  "dbt": {
+    "dbt_version": "1.12.6",
+    "results": [
+      {
+        "node": "test.signalflow.source_accepted_values_grid_generation_fuel__gas__coal__nuclear__biomass__hydro__imports__solar__wind__other.e617ecc0ab",
+        "status": "pass"
+      },
+      {
+        "node": "test.signalflow.generation_balances",
+        "status": "pass"
+      },
+      {
+        "node": "test.signalflow.source_not_null_grid_generation_start.c21b010350",
+        "status": "pass"
+      },
+      {
+        "node": "test.signalflow.source_not_null_grid_generation_fuel.82f704d618",
+        "status": "pass"
+      },
+      {
+        "node": "test.signalflow.source_not_null_grid_observations_start.282e7673f2",
+        "status": "pass"
+      },
+      {
+        "node": "test.signalflow.source_not_null_grid_observations_forecast.dc928d40f6",
+        "status": "pass"
+      },
+      {
+        "node": "test.signalflow.source_unique_grid_observations_start.88c2f64281",
+        "status": "pass"
+      },
+      {
+        "node": "model.signalflow.stg_grid_intervals",
+        "status": "success"
+      },
+      {
+        "node": "test.signalflow.not_null_stg_grid_intervals_interval_start.0efa9f28c6",
+        "status": "pass"
+      },
+      {
+        "node": "test.signalflow.unique_stg_grid_intervals_interval_start.beead90922",
+        "status": "pass"
+      },
+      {
+        "node": "test.signalflow.valid_intervals",
+        "status": "pass"
+      },
+      {
+        "node": "model.signalflow.mart_grid_daily",
+        "status": "success"
+      },
+      {
+        "node": "test.signalflow.not_null_mart_grid_daily_day_utc.9117747e2c",
+        "status": "pass"
+      },
+      {
+        "node": "test.signalflow.unique_mart_grid_daily_day_utc.65effdced5",
+        "status": "pass"
+      }
+    ]
+  },
+  "airflow_runs": [
+    {
+      "run_id": "scheduled__2026-10-27T06:00:00+00:00",
+      "state": "success",
+      "tasks": [
+        {
+          "task_id": "reconcile_7_days",
+          "state": "success"
+        },
+        {
+          "task_id": "build_warehouse",
+          "state": "success"
+        },
+        {
+          "task_id": "check_freshness",
+          "state": "success"
+        }
+      ]
+    },
+    {
+      "run_id": "manual__2026-10-28T05:00:00+00:00",
+      "state": "success",
+      "tasks": [
+        {
+          "task_id": "reconcile_7_days",
+          "state": "success"
+        },
+        {
+          "task_id": "build_warehouse",
+          "state": "success"
+        },
+        {
+          "task_id": "check_freshness",
+          "state": "success"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+.venv/
+.dbt-venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+.env
+data/
+*.egg-info/
+analytics/target/
+analytics/logs/
+analytics/dbt_packages/
+artifacts/
+.pnpm-store/
+# Personal portfolio source is separate from the SignalFlow engineering project.
+portfolio/
+.github/workflows/portfolio-ci.yml
+portfolio/node_modules/
+portfolio/.next/
+portfolio/out/
+portfolio/coverage/
+portfolio/playwright-report/
+portfolio/test-results/
+portfolio/.env*.local
+portfolio/*.tsbuildinfo
+portfolio/dist/
+
+# Prototype source is synchronized in its own Sites repository.
+prototype/
+
+# Independent AtlasIQ project repository.
+atlasiq/

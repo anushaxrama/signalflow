@@ -1,0 +1,64 @@
+{
+  "source": "https://api.carbonintensity.org.uk/",
+  "license": "CC BY 4.0",
+  "captured_at": "2026-10-28T05:49:19Z",
+  "events": [
+    {
+      "kind": "intensity",
+      "payload": {
+        "from": "2026-10-21T05:30Z",
+        "intensity": {
+          "actual": 133,
+          "forecast": 89,
+          "index": "moderate"
+        },
+        "to": "2026-10-21T06:00Z"
+      }
+    },
+    {
+      "kind": "generation",
+      "payload": {
+        "from": "2026-10-21T05:30Z",
+        "generationmix": [
+          {
+            "fuel": "biomass",
+            "perc": 9.6
+          },
+          {
+            "fuel": "coal",
+            "perc": 0
+          },
+          {
+            "fuel": "imports",
+            "perc": 6.9
+          },
+          {
+            "fuel": "gas",
+            "perc": 24.8
+          },
+          {
+            "fuel": "nuclear",
+            "perc": 14.9
+          },
+          {
+            "fuel": "other",
+            "perc": 6.4
+          },
+          {
+            "fuel": "hydro",
+            "perc": 2.3
+          },
+          {
+            "fuel": "solar",
+            "perc": 0
+          },
+          {
+            "fuel": "wind",
+            "perc": 35.2
+          }
+        ],
+        "to": "2026-10-21T06:00Z"
+      }
+    }
+  ]
+}

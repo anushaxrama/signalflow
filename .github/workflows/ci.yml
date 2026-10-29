@@ -1,0 +1,56 @@
+name: Verify SignalFlow
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.9', '3.12']
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: signalflow
+          POSTGRES_PASSWORD: testonly
+          POSTGRES_DB: signalflow_test
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U signalflow"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '${{ matrix.python }}'
+      - run: pip install -r requirements.lock
+      - run: pytest -q
+      - run: pytest -q
+        env:
+          TEST_DATABASE_URL: postgresql+psycopg://signalflow:testonly@localhost:5432/signalflow_test
+      - run: docker compose config --quiet
+      - run: python -m compileall -q signalflow orchestration
+      - run: node --check signalflow/static/app.js
+  warehouse:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: signalflow
+          POSTGRES_PASSWORD: testonly
+          POSTGRES_DB: signalflow
+        ports: ['5432:5432']
+        options: >-
+          --health-cmd "pg_isready -U signalflow"
+          --health-interval 5s --health-timeout 3s --health-retries 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: '3.12'}
+      - run: pip install -r requirements.lock 'dbt-postgres>=1.9,<2'
+      - run: python -m scripts.seed_ci
+        env:
+          DATABASE_URL: postgresql+psycopg://signalflow:testonly@localhost:5432/signalflow
+      - run: dbt build --project-dir analytics --profiles-dir analytics
+        env:
+          DBT_PASSWORD: testonly

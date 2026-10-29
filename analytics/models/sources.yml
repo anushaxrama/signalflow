@@ -1,0 +1,30 @@
+version: 2
+sources:
+  - name: grid
+    schema: public
+    tables:
+      - name: observations
+        columns:
+          - name: start
+            data_tests: [unique, not_null]
+          - name: forecast
+            data_tests: [not_null]
+      - name: generation
+        columns:
+          - name: start
+            data_tests: [not_null]
+          - name: fuel
+            data_tests:
+              - not_null
+              - accepted_values:
+                  arguments:
+                    values: [gas, coal, nuclear, biomass, hydro, imports, solar, wind, other]
+models:
+  - name: stg_grid_intervals
+    columns:
+      - name: interval_start
+        data_tests: [not_null, unique]
+  - name: mart_grid_daily
+    columns:
+      - name: day_utc
+        data_tests: [not_null, unique]

@@ -1,0 +1,11 @@
+name: signalflow
+version: '1.0.0'
+config-version: 2
+profile: signalflow
+model-paths: [models]
+test-paths: [tests]
+models:
+  signalflow:
+    +materialized: view
+    mart_grid_daily:
+      +materialized: table
