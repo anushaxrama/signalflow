@@ -47,7 +47,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: {python-version: '3.12'}
-      - run: pip install -r requirements.lock 'dbt-postgres>=1.9,<2'
+      - run: pip install -r requirements.lock -r analytics/requirements.txt
       - run: python -m scripts.seed_ci
         env:
           DATABASE_URL: postgresql+psycopg://signalflow:testonly@localhost:5432/signalflow

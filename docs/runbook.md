@@ -65,7 +65,7 @@ Manual warehouse build without Airflow, with PostgreSQL reachable from the host:
 
 ```sh
 python3 -m venv .dbt-venv
-.dbt-venv/bin/pip install 'dbt-postgres>=1.9,<2'
+.dbt-venv/bin/pip install -r analytics/requirements.txt
 # Set DBT_HOST and DBT_PASSWORD in your terminal, then:
 .dbt-venv/bin/dbt build --project-dir analytics --profiles-dir analytics
 ```

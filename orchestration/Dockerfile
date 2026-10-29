@@ -1,7 +1,8 @@
 FROM apache/airflow:2.10.5-python3.12
 USER airflow
 RUN python -m venv /home/airflow/dbt-venv
-RUN /home/airflow/dbt-venv/bin/pip install --no-cache-dir 'dbt-core>=1.10,<2' 'dbt-postgres>=1.9,<2'
+COPY --chown=airflow:root analytics/requirements.txt /tmp/dbt-requirements.txt
+RUN /home/airflow/dbt-venv/bin/pip install --no-cache-dir -r /tmp/dbt-requirements.txt
 # The pipeline has its own environment to avoid Airflow 2's SQLAlchemy 1 constraint.
 RUN python -m venv /home/airflow/pipeline-venv
 COPY --chown=airflow:root requirements.lock /tmp/pipeline-requirements.lock

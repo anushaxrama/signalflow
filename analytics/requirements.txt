@@ -1,0 +1,4 @@
+# Compatible dbt CLI versions verified in the local warehouse environment.
+dbt-core==1.10.23
+dbt-postgres==1.9.1
+click==8.1.8
